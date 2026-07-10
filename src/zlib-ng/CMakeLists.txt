@@ -94,6 +94,11 @@ if (ENABLE_SIMD_OPTIMIZATIONS)
     SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} --target=riscv64-unknown-linux-gnu -march=rv64gcv -Xclang -target-feature -Xclang +unaligned-scalar-mem")
   endif()
 
+  if (CMAKE_SYSTEM_PROCESSOR STREQUAL "loongarch64")
+    add_definitions(-DINFLATE_CHUNK_GENERIC)
+    add_definitions(-DINFLATE_CHUNK_READ_64LE)
+  endif()
+
 endif()
 
 #
